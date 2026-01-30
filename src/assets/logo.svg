@@ -1,0 +1,47 @@
+<svg width="600" height="200" viewBox="0 0 600 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 
+    DEFINITIVE DESIGNER IDENTITY
+    Style: Architectural Luxe-Tech
+    Concept: Precision & Flow
+  -->
+  
+  <defs>
+    <!-- Professional Glow for Cyan Accents -->
+    <filter id="cyber-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Centered Identity Container -->
+  <g transform="translate(300, 100) scale(0.9) translate(-270, -80)">
+    
+    <!-- LEFT BRACKET: Energy-Tapered Solid Cyan -->
+    <!-- Sharp outside, tapered inside for a more "stylish" aerodynamic feel -->
+    <path d="M120 0 L 20 80 L 120 160 H 155 L 75 80 L 155 0 Z" fill="#00F2FE" filter="url(#cyber-glow)"/>
+
+    <!-- RIGHT BRACKET: Energy-Tapered Solid Cyan -->
+    <path d="M420 0 L 520 80 L 420 160 H 385 L 465 80 L 385 0 Z" fill="#00F2FE" filter="url(#cyber-glow)"/>
+
+    <!-- BESPOKE MONOGRAM: IK (Vector Hand-Drawn) -->
+    <!-- Letter I -->
+    <rect x="180" y="25" width="40" height="110" fill="white"/>
+    
+    <!-- Letter K (Bespoke Geometry) -->
+    <!-- Stem -->
+    <rect x="235" y="25" width="40" height="110" fill="white"/>
+    <!-- Top Arm (Sharp Tapered) -->
+    <path d="M275 80 L 330 25 H 395 L 305 80 Z" fill="white"/>
+    <!-- Bottom Leg (Sharp Tapered) -->
+    <path d="M275 80 L 335 135 H 400 L 305 80 Z" fill="white"/>
+
+    <!-- WORDMARK: PRONOUNCED IDENTITY -->
+    <text x="300" y="180" font-family="Inter, system-ui, sans-serif" font-weight="600" font-size="20" fill="#94A3B8" text-anchor="middle" letter-spacing="18">IRSA KANWAL</text>
+
+    <!-- Visual Balance Line -->
+    <path d="M180 148 H 400" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+  </g>
+</svg>
