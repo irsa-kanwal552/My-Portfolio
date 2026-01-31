@@ -23,7 +23,7 @@ const Home = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
         id="home"
-        className="w-full min-h-screen flex items-center justify-center relative overflow-hidden text-white"
+        className="w-full min-h-screen flex items-center justify-center relative overflow-hidden text-white pt-32 md:pt-0"
       >
         {/* Background Glows can be subtle or removed to match 'previous' strictly. 
             Keeping them extremely subtle or removing them if they clash. 

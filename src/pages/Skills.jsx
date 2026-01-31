@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import midjourneyIcon from "../assets/midjourney.png";
 
 const skillsData = [
   {
@@ -33,7 +34,7 @@ const skillsData = [
       { name: "Postman", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" },
       { name: "VS Code", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" },
       { name: "ChatGPT", icon: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" },
-      { name: "Midjourney", icon: "https://upload.wikimedia.org/wikipedia/commons/e/ed/Midjourney_Emblem.png" }
+      { name: "Midjourney", icon: midjourneyIcon }
     ]
   },
 ];
@@ -85,13 +86,10 @@ const Skills = () => {
                       <img
                         src={skill.icon}
                         alt={skill.name}
-                        className="w-full h-full object-contain filter invert-0"
-                      // Adding a small hack: Some icons like Next.js/GitHub might need inversion on dark mode if they are standard black.
-                      // But 'original' versions usually have colors. 
-                      // GitHub original is black, so it might disappear on dark bg. Let's check.
-                      // If it's github-original, it's black. Let's strictly use github-original-wordmark or generic white logo if available?
-                      // Or simply apply `brightness-0 invert` class conditionally? 
-                      // Let's safe-guard generic icons.
+                        className={`w-full h-full object-contain ${skill.name === "GitHub" || skill.name === "Next.js"
+                            ? "brightness-0 invert"
+                            : ""
+                          }`}
                       />
                     </div>
                     <span className="font-medium">{skill.name}</span>

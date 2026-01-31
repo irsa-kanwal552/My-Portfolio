@@ -49,11 +49,15 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? "glass-nav py-3" : "bg-transparent py-5"
+      className={`fixed w-full z-50 transition-all duration-300 ${menuOpen
+        ? "bg-black py-0" // Force solid black when menu is open
+        : scrolled
+          ? "glass-nav py-3"
+          : "bg-transparent py-5"
         }`}
     >
-      <div className="max-w-7xl mx-auto px-9 flex justify-between items-center">
-        <a href="#home" className="text-2xl font-bold tracking-tighter hover:scale-105 transition-transform">
+      <div className="max-w-7xl mx-auto px-9 flex justify-between items-center relative ">
+        <a href="#home" className="text-2xl font-bold tracking-tighter hover:scale-105 transition-transform z-50">
           <img src={logo} alt="Irsa Kanwal" className="h-24 object-contain" />
         </a>
 
@@ -83,30 +87,46 @@ const Navbar = () => {
 
         {/* Mobile Button */}
         <div
-          className="md:hidden text-gray-200 cursor-pointer hover:text-cyan-400 transition"
+          className="md:hidden text-gray-200 cursor-pointer hover:text-cyan-400 transition z-50"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <X size={28} /> : <Menu size={28} />}
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay - Premium Half-Sheet */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass border-b border-gray-800 overflow-hidden"
+            initial={{ y: "-100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-100%" }}
+            transition={{ type: "spring", stiffness: 200, damping: 25 }}
+            className="fixed inset-0 bg-zinc-350/20 backdrop-blur-3xl backdrop-saturate-150 z-40 md:hidden flex flex-col justify-center items-center gap-3  border-b border-white/10 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)] overflow-hidden"
+            style={{ top: 42, height: "50vh" }}
           >
-            <ul className="flex flex-col gap-6 text-center py-8">
+            {/* Top Shine/Highlight */}
+            <div className="absolute top-0 w-1/2 h-1 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-sm" />
+
+            <ul className="flex flex-col gap-5 text-center p-4">
               {links.map((link) => (
                 <li key={link.path}>
                   <a
                     href={link.path}
-                    onClick={() => setMenuOpen(false)}
-                    className="text-lg font-medium text-gray-300 hover:text-cyan-400 transition"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setMenuOpen(false);
+                      setTimeout(() => {
+                        const section = document.querySelector(link.path);
+                        if (section) {
+                          section.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }, 300);
+                    }}
+                    className="text-xl font-medium text-gray-200 hover:text-cyan-400 transition-colors tracking-wide flex items-center justify-center gap-2 group"
                   >
+                    {/* Subtle dot indicator on hover */}
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
                     {link.name}
                   </a>
                 </li>
